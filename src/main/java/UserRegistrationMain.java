@@ -39,6 +39,15 @@ public class UserRegistrationMain {
         return (matcher.matches());
     }
 
+    public boolean passwordMatch(String password){
+        return passwordValidation(password);
+    }
+    public static boolean passwordValidation(String value){
+        Pattern pattern = Pattern.compile("^[1-9a-zA-Z]{8}$");
+        Matcher matcher = pattern.matcher(value);
+        return (matcher.matches());
+    }
+
 
     public static void main(String[] args) {
         System.out.println("USER REGISTRATION WITH REGEX");
@@ -61,5 +70,9 @@ public class UserRegistrationMain {
         System.out.print("Enter the Mobile Number:");
         String mobileNumberValue = sc.next();
         System.out.println(object.mobileNumberMatch(mobileNumberValue) + " value given");
+
+        System.out.print("Enter the Password:");
+        String passwordValue = sc.next();
+        System.out.println(object.passwordMatch(passwordValue) + " value given");
     }
 }
