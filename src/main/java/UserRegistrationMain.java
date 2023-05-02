@@ -52,31 +52,61 @@ public class UserRegistrationMain {
         return emailIdValidation(emailId);
     }
 
+    static void printRegistrationStatus(String matchingFor, String valueGiven, boolean result){
+        System.out.println("VALIDATING => " +matchingFor);
+        System.out.println("VALUE_GIVEN => " + valueGiven);
+        System.out.println("RESULT => " + result);
+        System.out.println();
+    }
 
     public static void main(String[] args) {
         System.out.println("USER REGISTRATION WITH REGEX");
 
         Scanner sc = new Scanner(System.in);
-        UserRegistrationMain object = new UserRegistrationMain();
+        UserRegistrationMain registrationObject = new UserRegistrationMain();
 
-        System.out.print("Enter the first name:");
+        //first name validation
+        IRegistration firstNameObj = (stringValue) -> {
+            return registrationObject.firstNameMatch(stringValue);
+        };
+        System.out.print("Enter first name:");
         String firstNameValue = sc.next();
-        System.out.println(object.firstNameMatch(firstNameValue) + " value given");
+        printRegistrationStatus("first_name",firstNameValue,firstNameObj.validate(firstNameValue));
 
-        System.out.print("Enter the last name:");
+
+        //last name validation
+        IRegistration lastNameObj = (stringValue) -> {
+            return registrationObject.lastNameMatch(stringValue);
+        };
+        System.out.print("Enter last name:");
         String lastNameValue = sc.next();
-        System.out.println(object.lastNameMatch(lastNameValue) + " value given");
+        printRegistrationStatus("last_name",lastNameValue,lastNameObj.validate(lastNameValue));
 
-        System.out.print("Enter the Email ID:");
-        String emailIdValue = sc.next();
-        System.out.println(object.emailIdMatch(emailIdValue) + " value given");
 
-        System.out.print("Enter the Mobile Number:");
+        //mobile number validation
+        IRegistration mobileNumberObj = (stringValue) -> {
+            return registrationObject.mobileNumberMatch(stringValue);
+        };
+        System.out.print("Enter mobile number:");
         String mobileNumberValue = sc.next();
-        System.out.println(object.mobileNumberMatch(mobileNumberValue) + " value given");
+        printRegistrationStatus("mobile_number",mobileNumberValue, mobileNumberObj.validate(mobileNumberValue));
 
-        System.out.print("Enter the Password:");
+
+        //email id validation
+        IRegistration emailIdObj = (stringValue) -> {
+            return registrationObject.emailIdMatch(stringValue);
+        };
+        System.out.print("Enter email Id:");
+        String emailIdValue = sc.next();
+        printRegistrationStatus("email_id",emailIdValue, emailIdObj.validate(emailIdValue));
+
+
+        //password validation
+        IRegistration passwordObj = (stringValue) -> {
+            return registrationObject.passwordMatch(stringValue);
+        };
+        System.out.print("Enter password:");
         String passwordValue = sc.next();
-        System.out.println(object.passwordMatch(passwordValue) + " value given");
+        printRegistrationStatus("password",passwordValue, passwordObj.validate(passwordValue));
     }
 }
