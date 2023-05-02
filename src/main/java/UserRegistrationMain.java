@@ -43,7 +43,7 @@ public class UserRegistrationMain {
         return passwordValidation(password);
     }
     public static boolean passwordValidation(String value){
-        Pattern pattern = Pattern.compile("^(?=[a-z])(?=.*[A-Z])(?=.*[0-9]).{8}$");
+        Pattern pattern = Pattern.compile("^(?=[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[%^_#&$+=@]).{8,16}$");
         Matcher matcher = pattern.matcher(value);
         return (matcher.matches());
     }
