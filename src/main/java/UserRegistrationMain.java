@@ -12,6 +12,15 @@ public class UserRegistrationMain {
         Matcher matcher = pattern.matcher(value);
         return (matcher.matches());
     }
+
+    public boolean lastNameMatch(String lastName){
+        return lastNameValidation(lastName);
+    }
+    public static boolean lastNameValidation(String value){
+        Pattern pattern = Pattern.compile("^[A-Z]{1,1}[a-z]{2,}$");
+        Matcher matcher = pattern.matcher(value);
+        return (matcher.matches());
+    }
     public static void main(String[] args) {
         System.out.println("USER REGISTRATION WITH REGEX");
 
@@ -21,5 +30,9 @@ public class UserRegistrationMain {
         System.out.print("Enter the first name:");
         String firstNameValue = sc.next();
         System.out.println(object.firstNameMatch(firstNameValue) + " value given");
+
+        System.out.print("Enter the last name:");
+        String lastNameValue = sc.next();
+        System.out.println(object.lastNameMatch(lastNameValue) + " value given");
     }
 }
