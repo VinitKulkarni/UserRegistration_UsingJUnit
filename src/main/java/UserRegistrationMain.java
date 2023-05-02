@@ -30,6 +30,16 @@ public class UserRegistrationMain {
         return (matcher.matches());
     }
 
+    public boolean mobileNumberMatch(String mobileNumber) {
+        return mobileNumberValidation(mobileNumber);
+    }
+    public static boolean mobileNumberValidation(String value){
+        Pattern pattern = Pattern.compile("^[1-9]{1}+[0-9]{1}+[-][0-9]{10}$");
+        Matcher matcher = pattern.matcher(value);
+        return (matcher.matches());
+    }
+
+
     public static void main(String[] args) {
         System.out.println("USER REGISTRATION WITH REGEX");
 
@@ -47,5 +57,9 @@ public class UserRegistrationMain {
         System.out.print("Enter the Email ID:");
         String emailIdValue = sc.next();
         System.out.println(object.emailIdMatch(emailIdValue) + " value given");
+
+        System.out.print("Enter the Mobile Number:");
+        String mobileNumberValue = sc.next();
+        System.out.println(object.mobileNumberMatch(mobileNumberValue) + " value given");
     }
 }
