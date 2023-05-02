@@ -48,6 +48,10 @@ public class UserRegistrationMain {
         return (matcher.matches());
     }
 
+    public boolean multipleEmailIdMatch(String emailId, boolean result){
+        return emailIdValidation(emailId);
+    }
+
 
     public static void main(String[] args) {
         System.out.println("USER REGISTRATION WITH REGEX");
