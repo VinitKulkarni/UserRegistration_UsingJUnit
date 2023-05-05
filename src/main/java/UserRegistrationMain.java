@@ -52,13 +52,6 @@ public class UserRegistrationMain {
         return emailIdValidation(emailId);
     }
 
-    static void printRegistrationStatus(String matchingFor, String valueGiven, boolean result){
-        System.out.println("VALIDATING => " +matchingFor);
-        System.out.println("VALUE_GIVEN => " + valueGiven);
-        System.out.println("RESULT => " + result);
-        System.out.println();
-    }
-
     public static void main(String[] args) {
         System.out.println("USER REGISTRATION WITH REGEX");
 
@@ -69,44 +62,69 @@ public class UserRegistrationMain {
         IRegistration firstNameObj = (stringValue) -> {
             return registrationObject.firstNameMatch(stringValue);
         };
-        System.out.print("Enter first name:");
-        String firstNameValue = sc.next();
-        printRegistrationStatus("first_name",firstNameValue,firstNameObj.validate(firstNameValue));
+        try {
+            System.out.print("Enter first name:");
+            String firstNameValue = sc.next();
+            if (firstNameObj.validate(firstNameValue) == false)
+                throw new RegistrationException("Invalid data entered for firstName");
+        } catch (RegistrationException e){
+            System.out.println(e);
+        }
 
 
         //last name validation
         IRegistration lastNameObj = (stringValue) -> {
             return registrationObject.lastNameMatch(stringValue);
         };
+        try{
         System.out.print("Enter last name:");
         String lastNameValue = sc.next();
-        printRegistrationStatus("last_name",lastNameValue,lastNameObj.validate(lastNameValue));
+        if(lastNameObj.validate(lastNameValue) == false)
+            throw new RegistrationException("Invalid data entered for lastName");
+        } catch (RegistrationException e){
+            System.out.println(e);
+        }
 
 
         //mobile number validation
         IRegistration mobileNumberObj = (stringValue) -> {
             return registrationObject.mobileNumberMatch(stringValue);
         };
+        try{
         System.out.print("Enter mobile number:");
         String mobileNumberValue = sc.next();
-        printRegistrationStatus("mobile_number",mobileNumberValue, mobileNumberObj.validate(mobileNumberValue));
+        if(mobileNumberObj.validate(mobileNumberValue) == false)
+            throw new RegistrationException("Invalid data entered for mobileNumber");
+        } catch (RegistrationException e){
+            System.out.println(e);
+        }
 
 
         //email id validation
         IRegistration emailIdObj = (stringValue) -> {
             return registrationObject.emailIdMatch(stringValue);
         };
+        try{
         System.out.print("Enter email Id:");
         String emailIdValue = sc.next();
-        printRegistrationStatus("email_id",emailIdValue, emailIdObj.validate(emailIdValue));
+        if(emailIdObj.validate(emailIdValue) == false)
+            throw new RegistrationException("Invalid data entered for emailId");
+        } catch (RegistrationException e){
+            System.out.println(e);
+        }
 
 
         //password validation
         IRegistration passwordObj = (stringValue) -> {
             return registrationObject.passwordMatch(stringValue);
         };
+        try{
         System.out.print("Enter password:");
         String passwordValue = sc.next();
-        printRegistrationStatus("password",passwordValue, passwordObj.validate(passwordValue));
+        if(passwordObj.validate(passwordValue) == false)
+            throw new RegistrationException("Invalid data entered for password");
+        } catch (RegistrationException e){
+            System.out.println(e);
+        }
     }
 }
